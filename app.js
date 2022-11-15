@@ -9,8 +9,12 @@ mongoose.connect(process.env.mongo_url, {}, (e) => {
     console.log('db connected')
 })
 
+// routes 
+const booksRoute = require('./routes/books')
+
 const app = express()
 
+app.use('/books', booksRoute)
 
 app.listen(3000, () => {
     console.log('server is running on port 3000')

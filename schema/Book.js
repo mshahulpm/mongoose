@@ -7,14 +7,15 @@ const bookSchema = new Schema({
     body: String,
     comments: [{ body: String, date: Date }],
     date: { type: Date, default: Date.now },
-    hidden: Boolean,
+    hidden: {
+        type: Boolean, default: false
+    },
     meta: {
         votes: Number,
         favs: Number
     }
 })
 
+const Book = mongoose.model('Book', bookSchema)
 
-exports = {
-    Book: mongoose.model('Book', bookSchema)
-}
+module.exports = Book
