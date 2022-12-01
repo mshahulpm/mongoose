@@ -1,14 +1,17 @@
 const router = require('express').Router()
-const Book = require('../schema/Book')
+const { Book } = require('../schema/Book')
 
 router.get('/', async (req, res) => {
-
     res.send(await Book.find())
 })
 
-router.get('/create', async (req, res) => {
+router.get('/:id', async (req, res) => {
+    res.send(await Book.findById(req.params.id).populate('author'))
+})
+
+router.post('/create', async (req, res) => {
     res.send(await Book.create({
-        author: "author 1",
+        author: req.body.author,
         body: "body 1",
         comments: [{
             body: "body",

@@ -11,10 +11,13 @@ mongoose.connect(process.env.mongo_url, {}, (e) => {
 
 // routes 
 const booksRoute = require('./routes/books')
+const userRoute = require('./routes/user')
 
 const app = express()
+app.use(express.json())
 
 app.use('/books', booksRoute)
+app.use('/user', userRoute)
 
 app.listen(3000, () => {
     console.log('server is running on port 3000')
