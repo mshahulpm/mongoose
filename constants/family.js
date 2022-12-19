@@ -41,7 +41,7 @@ module.exports = {
                 { app_no: '10003', name: 'shawn' },
                 { app_no: '10004', name: 'liya' },
                 { app_no: '10005', name: 'sophy' },
-                { app_no: '', name: 'ellie' },
+                { name: 'ellie' },
             ]
         },
         {
@@ -64,7 +64,7 @@ module.exports = {
             status: 'passed',
             children: [
                 { app_no: '10020', name: 'passed-son' },
-                { app_no: '', name: 'angela' },
+                { name: 'angela' },
             ]
         },
         {
@@ -75,7 +75,7 @@ module.exports = {
             status: 'passed',
             children: [
                 { app_no: '10021', name: 'passed-grandson' },
-                { app_no: '', name: 'angela' },
+                { name: 'angela' },
             ]
         },
 
@@ -119,7 +119,7 @@ module.exports = {
             mother_name: 'michle passed wife',
             status: 'passed',
             children: [
-                { app_no: '', name: 'michle-passed-son' },
+                { name: 'michle-passed-son' },
             ]
         },
 
