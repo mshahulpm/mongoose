@@ -29,13 +29,7 @@ ChildrenSchema.virtual('details', {
 ChildrenSchema.virtual('mother_relation', {
     ref: 'Family',
     localField: 'app_no',
-    foreignField: 'mother',
-    match: {
-        $or: [
-            { mother: this.app_no },
-            { father: this.app_no },
-        ]
-    }
+    foreignField: 'mother'
 })
 
 ChildrenSchema.virtual('father_relation', {
@@ -52,7 +46,21 @@ const FamilySchema = new Schema({
     mother_name: String,
     status: String,
     children: [ChildrenSchema],
-},)
+}, mongooseOption)
+
+FamilySchema.virtual('mother_details', {
+    ref: 'People',
+    localField: 'mother',
+    foreignField: 'app_no',
+    justOne: true,
+})
+
+FamilySchema.virtual('father_details', {
+    ref: 'People',
+    localField: 'father',
+    foreignField: 'app_no',
+    justOne: true,
+})
 
 const Family = mongoose.model('Family', FamilySchema)
 

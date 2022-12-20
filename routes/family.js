@@ -38,15 +38,26 @@ router.get('/tree/:app_no', async (req, res) => {
         ]
     })
         .populate('children.details', '-_id name dob gender place')
+        .populate('mother_details father_details')
         .populate({
             path: 'children.mother_relation',
-            match: {
-                mother: '10005'
-            },
-            populate: {
+            populate: [{
                 path: 'children.details',
                 select: '-_id name dob gender place'
-            }
+            }, {
+                path: 'mother_details father_details',
+                select: '-_id name dob gender place'
+            }]
+        })
+        .populate({
+            path: 'children.father_relation',
+            populate: [{
+                path: 'children.details',
+                select: '-_id name dob gender place'
+            }, {
+                path: 'mother_details father_details',
+                select: '-_id name dob gender place'
+            }]
         })
     )
 })
