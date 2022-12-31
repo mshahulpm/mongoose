@@ -1,7 +1,9 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
-mongoose.connect(process.env.mongo_url, {}, (e) => {
+mongoose.connect(process.env.mong_ssl, {
+    ssl: true
+}, (e) => {
     if (e) {
         console.log(e)
         process.exit(1)
