@@ -36,6 +36,7 @@ const { default: mongoose } = require("mongoose");
                     quantity: 1
                 }
             }
-        }).count()
+        })
+            .count()
     )
 })()
