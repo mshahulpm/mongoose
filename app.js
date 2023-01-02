@@ -2,7 +2,8 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const express = require('express')
 mongoose.connect(process.env.mong_ssl, {
-    ssl: true
+    ssl: true,
+    tlsAllowInvalidCertificates: true
 }, (e) => {
     if (e) {
         console.log(e)
