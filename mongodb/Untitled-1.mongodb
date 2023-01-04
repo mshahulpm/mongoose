@@ -4,7 +4,7 @@
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
 // Select the database to use.
-use('sample_training');
+use('sample_analytics');
 
 // The drop() command destroys all data from a collection.
 // Make sure you run it against the correct database and collection.
@@ -20,10 +20,12 @@ use('sample_training');
 //     {$push:{array:'no'}}
 // )
 
-db.routes.findAndModify(
-    {
-        query : {_id:ObjectId('56e9b39b732b6122f877fa35')},
-    update:{$inc:{stops:1}},
-    new:true
-    },
-)
+// db.routes.findAndModify(
+//     {
+//         query : {_id:ObjectId('56e9b39b732b6122f877fa35')},
+//     update:{$inc:{stops:1}},
+//     new:true
+//     },
+// )
+
+db.customers.explain().find({accounts:627788})
