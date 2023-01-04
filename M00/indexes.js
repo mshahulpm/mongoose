@@ -22,7 +22,7 @@ const zips = mongo_client.db('sample_training').collection('zips');
         // drop index 
         // await customers.dropIndex('email_1'),
 
-        await customers.findOne()
+        await customers.findOne(),
 
     )
 
