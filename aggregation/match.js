@@ -40,4 +40,22 @@ const Grade = mongoose.model('Grade', new mongoose.Schema({}, { strict: false })
             },
         ])))
 
-})()
+});
+
+const movies = mongo_client.db('sample_mflix').collection('movies')
+
+// (async function(){
+
+//     await mongo_client.connect()
+
+//     console.log(
+//         await movies.aggregate([
+//             {
+//                 $match:{
+//                     $eq :
+//                 }
+//             }
+//         ])
+//     )
+
+// })()
