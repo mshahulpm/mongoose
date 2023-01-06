@@ -35,7 +35,9 @@ const grades = mongo_client.db().collection('grades');
                     total_score: { $sum: '$scores.score' },
                     average: { $divide: [{ $sum: '$scores.score' }, 4] },
                 }
-            }, {
+            },
+            { $sort: { total_score: 1 } },
+            {
                 $limit: 1
             }
         ]).toArray()
