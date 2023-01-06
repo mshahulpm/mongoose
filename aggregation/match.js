@@ -35,7 +35,7 @@ const Grade = mongoose.model('Grade', new mongoose.Schema({}, { strict: false })
                 $project: {
                     exam_score: '$scores.score',
                     total_score: 1,
-                    average: 1
+                    average: 1,
                 }
             },
         ])))
