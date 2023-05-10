@@ -1,44 +1,8 @@
 import 'dotenv/config'
 import mongoose from 'mongoose'
-import { fieldEncryption, encrypt, decrypt } from 'mongoose-field-encryption'
-import crypto from 'crypto'
-
-const SECRET = "some secret key"
-function defaultSaltGenerator(secret) {
-
-
-    // return crypto.randomBytes(16) // if searching is not required
-    return "1234567890123456"     // if searching required 
-    // should ideally use the secret to return a string of length 16, 
-    // default = `const defaultSaltGenerator = secret => crypto.randomBytes(16);`, 
-    // see options for more details
-}
-const _hash = (secret) => crypto.createHash("sha256").update(secret).digest("hex").substring(0, 32);
-
-// const encrypted = encrypt("New Message", _hash(SECRET), defaultSaltGenerator)
-// console.log(encrypted);
-// const decrypted = decrypt(encrypted, _hash(SECRET))
-// console.log(decrypted)
-
-const PostSchema = new mongoose.Schema({
-    title: String,
-    message: String,
-    references: {
-        author: String,
-        date: Date,
-    },
-})
-
-
-// process.exit()
-
-
-PostSchema.plugin(fieldEncryption, {
-    fields: ["message", "references"],
-    secret: SECRET,
-    saltGenerator: defaultSaltGenerator,
-});
-const Post = mongoose.model("Post", PostSchema);
+import * as fs from 'fs'
+import { Post } from './model/post.mjs'
+import { User } from './model/user.mjs'
 
 
 async function main() {
@@ -61,8 +25,6 @@ async function main() {
 
     const searchRegex = new RegExp(searchObj.message.slice(0, 3), 'i')
 
-
-
     console.log(
         // post,
         searchObj.message,
@@ -74,6 +36,21 @@ async function main() {
     )
 
 }
+// 1683730803201
+async function loadUser() {
+
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf-8'))
+
+    var i = 100000
+    console.log(Date.now())
+    console.time('data-insert')
+    for (; i < 1000000; i + 100000) {
+        const dataToInsert = users.slice(i, i + 100000)
+        await User.create(dataToInsert)
+    }
+    console.timeEnd('data-insert')
+
+}
 
 
 mongoose.connect(process.env.mongo_url, async (err) => {
@@ -81,7 +58,8 @@ mongoose.connect(process.env.mongo_url, async (err) => {
     if (err) console.log(err)
     else {
         console.log('db connected')
-        await main()
+        // await main()
+        await loadUser()
     }
 
 })
