@@ -1340,6 +1340,11 @@ mongodb@^5.3.0:
   optionalDependencies:
     saslprep "^1.0.3"
 
+mongoose-field-encryption@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/mongoose-field-encryption/-/mongoose-field-encryption-6.0.0.tgz#fd0dbb84773c7f4c6aa4fb83616fccdb9d9b9c2e"
+  integrity sha512-mcdrd/SYKZT9eMUL1gdKDRKsxBdKd/dn9xED+MojWMD7fuLpeAuRSFD80zoagc9inNOXxdZYAup1d0LFgObomw==
+
 mongoose@^6.7.2:
   version "6.7.2"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-6.7.2.tgz#457994b254a2afd1e03dd8f0b3046ff3d2ed276e"
